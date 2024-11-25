@@ -1,0 +1,44 @@
+{
+  "name": "YBM_START1",
+  "version": "1.0.0",
+  "description": "YBM_START",
+  "main": "main.js",
+  "productName": "app",
+  "scripts": {
+    "start": "electron .",
+    "deploy:osx": "electron-builder --mac",
+    "deploy:win": "electron-builder --win",
+    "build:win32": "electron-builder --win nsis:ia32",
+    "build:win64": "electron-builder --win nsis:x64"
+  },
+  "build": {
+    "productName": "YBM_START2",
+    "appId": "YBM_START3",
+    "asar": false,
+    "win": {
+      "target": "nsis"
+    },
+    "directories": {
+      "app": "."
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": false,
+      "artifactName": "installer.${ext}"
+    }
+  },
+  "author": "bluega",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron/fuses": "^1.8.0",
+    "electron": "^32.1.2",
+    "electron-builder": "^25.1.8",
+    "rcedit": "^4.0.1"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "electron-squirrel-startup": "^1.0.1",
+    "extract-zip": "^2.0.1",
+    "fs-extra": "^11.2.0"
+  }
+}
