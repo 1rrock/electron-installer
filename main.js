@@ -1,15 +1,10 @@
 const { app, BrowserWindow, shell, ipcMain, Menu, screen, dialog } = require('electron');
 const fs = require('fs-extra');
 const path = require('path');
-const os = require('os');
 const { exec } = require('child_process');
 const extract = require('extract-zip');
 const axios = require('axios');
-const util = require('util');
-const execPromise = util.promisify(exec);
 
-
-let bookName;
 let win = null;
 let serverApp;
 let isInsstalled = false;
@@ -71,17 +66,18 @@ const checkInstalled = () => {
 };
 
 function bookInstall() {
-    const installExePath = path.join(baseUrl, 'install.exe');
-    exec(installExePath, (error, stdout, stderr) => {
+    const installExePath = path.join(baseUrl, 'installer.exe');
+    // spawn(installExePath, null, { shell: true });
+    exec(`"${installExePath}"`, (error, stdout, stderr) => {
         if (error) {
-            console.error(`exec error: ${error}`);
+            console.error(`Execution failed: ${error.message}`);
             return;
         }
         if (stderr) {
-            console.error(`stderr: ${stderr}`);
+            console.error(`Stderr: ${stderr}`);
             return;
         }
-        console.log(`stdout: ${stdout}`);
+        console.log(`Output: ${stdout}`);
     });
 }
 

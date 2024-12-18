@@ -12,6 +12,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
     },
     update: () => {
         ipcRenderer.send('update');
+    },
+    closeApp: () => {
+        ipcRenderer.send('closeWindowApp');
     }
 })
 
